@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="simple chinese">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。   嗯？这都是怎么一回事哪？最近我有机会研究使用不同的方法在 JavaScript 中实现 装饰者模式（又称为包装模式）。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。 “当然不是这种装饰者…” 这5种不同的实现方式分别是：  闭包 猴子补丁 原型继承 代理">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 5种不同的方法实现装饰者模式（译）">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/JS-5种不同的方法实现装饰者模式（译）/index.html">
+<meta property="og:site_name" content="life like a box of chocolate">
+<meta property="og:description" content="为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。   嗯？这都是怎么一回事哪？最近我有机会研究使用不同的方法在 JavaScript 中实现 装饰者模式（又称为包装模式）。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。 “当然不是这种装饰者…” 这5种不同的实现方式分别是：  闭包 猴子补丁 原型继承 代理">
+<meta property="og:locale" content="simple chinese">
+<meta property="og:updated_time" content="2017-08-14T09:08:25.646Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 5种不同的方法实现装饰者模式（译）">
+<meta name="twitter:description" content="为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。   嗯？这都是怎么一回事哪？最近我有机会研究使用不同的方法在 JavaScript 中实现 装饰者模式（又称为包装模式）。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。 “当然不是这种装饰者…” 这5种不同的实现方式分别是：  闭包 猴子补丁 原型继承 代理">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/JS-5种不同的方法实现装饰者模式（译）/"/>
+
+
+
+
+
+  <title>JS 5种不同的方法实现装饰者模式（译） | life like a box of chocolate</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="simple chinese">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">life like a box of chocolate</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">study study hard day day up</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/JS-5种不同的方法实现装饰者模式（译）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Johnny">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="life like a box of chocolate">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS 5种不同的方法实现装饰者模式（译）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T16:35:08+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。 </p>
+</blockquote>
+<h3 id="嗯？这都是怎么一回事哪？"><a href="#嗯？这都是怎么一回事哪？" class="headerlink" title="嗯？这都是怎么一回事哪？"></a>嗯？这都是怎么一回事哪？</h3><p>最近我有机会研究使用不同的方法在 JavaScript 中实现 <a href="https://en.wikipedia.org/wiki/Decorator_pattern" target="_blank" rel="external">装饰者模式（又称为包装模式）</a>。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。<br><strong> “当然不是这种装饰者…” </strong><br>这5种不同的实现方式分别是：</p>
+<ul>
+<li>闭包</li>
+<li>猴子补丁</li>
+<li>原型继承</li>
+<li>代理（ES6）</li>
+<li>中间件</li>
+</ul>
+<p>如果你想要知道本文</p>
+<ul>
+<li>为什么使用 ES6 语法，</li>
+<li>为什么不使用 class，</li>
+<li>源文件列表，为了不打乱阅读顺序，我已经把这些都记在了附录中，你可以到这篇文章的最后查看。</li>
+</ul>
+<h2 id="首先，需要被装饰的组件"><a href="#首先，需要被装饰的组件" class="headerlink" title="首先，需要被装饰的组件"></a>首先，需要被装饰的组件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">use strict</div><div class="line">	function myComponentFactory() &#123;</div><div class="line">	    let suffix = &apos;&apos;</div><div class="line"> 	   return &#123;</div><div class="line">    	    setSuffix: suf =&gt; suffix = suf,</div><div class="line">        	printValue: value =&gt; console.log(`value is $&#123;value + suffix&#125;`)</div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">    const component = myComponentFactory()</div><div class="line">    component.setSuffix(&apos;!&apos;)</div><div class="line">    component.printValue(&apos;My Value&apos;)</div></pre></td></tr></table></figure>
+<p>这是个简单的组件，含有一个 printValue(val) 方法，用来在值的最后添加尾缀并在控制台输出，尾缀可以通过 setSuffix(val) 方法设置。</p>
+<p>我准备用一个验证输入的装饰器，以及一个将值转换为小写的验证器来展示装饰链的情景。创建 setSuffix(val) 方法是为了添加一些复杂性，用来满足组件拥有除装饰方法以外还有其他成员。</p>
+<p>值得注意的是，除了最后一个以外的所有例子都是使用独立的函数对目标对象进行装饰，而不是添加对象的一个成员。</p>
+<h3 id="如何装饰这个组件"><a href="#如何装饰这个组件" class="headerlink" title="如何装饰这个组件"></a>如何装饰这个组件</h3><p>下图显示我准备如何装饰这个组件，先将初始的 printValue(val) 方法先用 ‘lower case’ 装饰器包装，然后再用 ‘validate’ 装饰器包装。当一个被装饰过的组件调用 printValue(val) 方法时，首先它会验证它的值，然后会将值转为小写，最后打印它。<br>（注意：下图表明，我们可以在原始调用之后返回过程时，给我们的装饰器添加额外的行为，而本文并没有涉及这些。）</p>
+<h3 id="方法一：-闭包"><a href="#方法一：-闭包" class="headerlink" title="方法一： 闭包"></a>方法一： 闭包</h3><p>首先，我会展示这些代码作为一个整体，然后我会带你一步一步地分析它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">function myComponentFactory() &#123;</div><div class="line">    let suffix = &apos;&apos;</div><div class="line">    return &#123;</div><div class="line">        setSuffix: suf =&gt; suffix = suf,</div><div class="line">        printValue: value =&gt; console.log(`value is $&#123;value + suffix&#125;`)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line">    return &#123;</div><div class="line">        setSuffix: inner.setSuffix,</div><div class="line">        printValue: value =&gt; inner.printValue(value.toLowerCase())</div><div class="line">    &#125;</div><div class="line"> &#125;</div><div class="line"></div><div class="line">function validatorDecorator(inner) &#123;</div><div class="line">    return &#123;</div><div class="line">        setSuffix: inner.setSuffix,</div><div class="line">        printValue: value =&gt; &#123;</div><div class="line">            const isValid = ~value.indexOf(&apos;My&apos;)</div><div class="line">            setTimeout(() =&gt; &#123;</div><div class="line">                if (isValid) inner.printValue(value)</div><div class="line">                else console.log(&apos;not valid man...&apos;)</div><div class="line">            &#125;, 500)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">const component = validatorDecorator(toLowerDecorator(myComponentFactory()))</div><div class="line">component.setSuffix(&apos;!&apos;)</div><div class="line">component.printValue(&apos;My Value&apos;)</div><div class="line">component.printValue(&apos;Invalid Value&apos;)</div></pre></td></tr></table></figure>
+<p>这些都做了什么？<br>组件工厂还是和之前的一样。不过，我们通过用装饰工厂包裹它的创建来装饰它。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const component = validatorDecorator(toLowerDecorator(myComponentFactory()))</div></pre></td></tr></table></figure></p>
+<p>原始对象将作为参数传入装饰工厂中，并返回一个经过包装的对象，它会将除了被装饰的方法以外的调用直接传递给初始对象。<br>装饰工厂接受原始对象作为参数，并返回一个经过包装后的对象，这个对象会将除了需要被装饰的方法以外的调用直接传递给原始对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line">    return &#123;</div><div class="line">        setSuffix: inner.setSuffix,</div><div class="line">        printValue: value =&gt; inner.printValue(value.toLowerCase())</div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>装饰器会将值转换为小写，并把这个“装饰”（或“包装”）后的值传给了内部函数。<br>然后，我们可以继续在对象的创建上添加装饰工厂方法并等待调用，这就像是在打开一个俄罗斯套娃。<br>在完成了对象的创建和装饰之后，我们运行我们的测试代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">component.setSuffix(&apos;!&apos;)</div><div class="line">component.printValue(&apos;My Value&apos;)</div><div class="line">component.printValue(&apos;Invalid Value&apos;)</div></pre></td></tr></table></figure></p>
+<p>结果是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">value is my value!not valid man...</div></pre></td></tr></table></figure></p>
+<p>最外层的装饰器将会第一个被执行。在这个例子中是验证方法。第一次调用是合法的，所以结果会被传递给第二个方法，值将被转换为小写，然后再按顺序调用原始方法给经过小写处理后的值添加尾缀，并在控制台中输出结果。<br>第二次调用没有通过验证，所以值没有被修改，它展示了如何停止装饰链。</p>
+<p><strong><em> 验证装饰器为何要设置定时？ </em></strong><br><a href="http://www.roidna.com/blog/what-is-node-js-benefits-overview/" target="_blank" rel="external">(服务生比喻是解释异步代码最好的方法)</a></p>
+<p>我在包装方法中添加一些异步的代码，因为我们在JavaScript的世界里：一个单线程，无阻塞，异步为王的语言世界。如果你的代码无法处理异步，那么它就失去了大部分JavaScript语言设计的特点。</p>
+<p>验证方法通过设置定时来模拟去数据库验证值的合法性，然后在回调函数中去调用内部函数的方法。这样我们能测试我们的实现方式在处理异步代码时是否依旧能正常工作</p>
+<h4 id="该如何使用闭包？"><a href="#该如何使用闭包？" class="headerlink" title="该如何使用闭包？"></a>该如何使用闭包？</h4><p>为了之后的调用，我们可以将内部对象存储到一个新对象上。但我们为什么不这样做？因为这会使得它成为公共的，那时，我该调用 instance.setSuffix() ，还是 instance._original.setSuffix()？这会变得非常奇怪，会混淆对象的使用，使对象成为一个私有成员这会好得多。</p>
+<blockquote>
+<p>“然而JavaScript并没有私有成员，糟糕！” </p>
+</blockquote>
+<p>但我们可以使用闭包来达到这个效果。</p>
+<h4 id="官方：什么是闭包？"><a href="#官方：什么是闭包？" class="headerlink" title="官方：什么是闭包？"></a>官方：什么是闭包？</h4><blockquote>
+<p>“即使函数在变量的作用域之外被调用，闭包允许函数访问闭包引用的变量。”（我稍微重新措辞从<a href="https://en.wikipedia.org/wiki/Closure_(computer_programming" target="_blank" rel="external">维基百科</a>)的定义）</p>
+</blockquote>
+<p>一个简单的例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function wow() &#123;</div><div class="line">    const val = 5</div><div class="line">    return () =&gt; console.log(val)</div><div class="line">&#125;</div><div class="line">wow()()</div></pre></td></tr></table></figure></p>
+<p>这是一个我能想到用JavaScript实现最简单的例子。“wow” 方法返回一个打印 “val” 的方法，然而，一旦 “wow” 返回，“val” 变量就不在作用域之中。<br>然而，它会正常显示，因为闭包在方法返回时就被创建了，它已经记录了作用域里的变量（在这个例子中是 “val”），即使离开了当前作用域，闭包依旧可以访问它内部的变量，</p>
+<p><strong><em> 回到我们的装饰器 </em></strong><br>再来看看之前的装饰器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line">    return &#123;</div><div class="line">        setSuffix: inner.setSuffix,</div><div class="line">        printValue: value =&gt; inner.printValue(value.tolowercase())</div><div class="line">    &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p> 它返回一个包含以下方法的对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">value =&gt; inner.printValue(value.tolowercase())</div></pre></td></tr></table></figure>
+<p>这个方法引用 “inner” 对象，当装饰方法被返回时，“inner” 对象就已经在作用域之外了。但因为，它在方法内部是一个被使用的变量，所以内部方法会记录这个变量，一旦这个方法被返回，那么闭包就形成了。<br>这意味着为了嵌套的方法能在之后正常调用，变量的生命周期被我们的内部方法给延长了。<br>因为闭包，我们的方法能使用 “inner” 对象，但它是私有变量，并不是公共的。<br>闭包是 JavaScript 最重要和实用的特性之一，所以确保你现在已经领悟它了。</p>
+<p><strong><em> 优缺点 </em></strong></p>
+<p>在这介绍闭包，虽然它和上面的包装方法有一点关系，但事实上，本文所展示的技术都使用了闭包来隐藏私有变量。<br>除此之外，这是一个非常简单的实现，但有一个非常明显的缺点：我们必须包装内部对象的每个方法，而非装饰那一个目标方法。就像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">return &#123;</div><div class="line">    setSuffix: inner.setSuffix,</div><div class="line">    ...</div></pre></td></tr></table></figure>
+<p>这既丑陋又痛苦。可不可以我们的装饰器只定义装饰行为而不去关心剩下的？幸运的是有不少技术能这样做。让我们看看猴子补丁是如何做的。</p>
+<h3 id="方法二：猴子补丁"><a href="#方法二：猴子补丁" class="headerlink" title="方法二：猴子补丁"></a>方法二：猴子补丁</h3><p><strong><em> 什么是猴子补丁？ </em></strong></p>
+<blockquote>
+<p>“动态修改一个类或模型。” -<a href="https://en.wikipedia.org/wiki/Monkey_patch" target="_blank" rel="external">维基百科</a> </p>
+</blockquote>
+<p> 简单地在当前情景下解释一下：</p>
+<blockquote>
+<p>“我将要采用JavaScript的动态性并结合对象可变性的特点来用我的方法取代你的方法！” -（那时的我）</p>
+</blockquote>
+<p>那该如何用猴子补丁来装饰？</p>
+<blockquote>
+<p>“我准备用我的方法替换你的，然后我会从我的方法内部包装并调用你的方法。” -（依旧是我）</p>
+</blockquote>
+<p><strong><em> 该怎么做！ </em></strong><br>你问该怎么做？好，我会像你展示。首先，我会展示这些代码作为一个整体，然后我会带你一步一步地分析它：（译者注：这里是原作者的一处幽默，看原文更能体会。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">function myComponentFactory() &#123;</div><div class="line">    let suffix = &apos;&apos;</div><div class="line">    return &#123;</div><div class="line">        setSuffix: suf =&gt; suffix = suf,</div><div class="line">        printValue: value =&gt; console.log(`value is $&#123;value + suffix&#125;`)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">function decorateWithToLower(inner) &#123;</div><div class="line">    const originalPrintValue = inner.printValue</div><div class="line">    inner.printValue = value =&gt; originalPrintValue(value.toLowerCase())&#125;function decorateWithValidator(inner) &#123;</div><div class="line">    const originalPrintValue = inner.printValue</div><div class="line"></div><div class="line">    inner.printValue = value =&gt; &#123;</div><div class="line">        const isValid = ~value.indexOf(&apos;My&apos;)</div><div class="line"></div><div class="line">        	setTimeout(() =&gt; &#123;</div><div class="line">            	if (isValid) originalPrintValue(value)</div><div class="line">           		 else console.log(&apos;not valid man...&apos;)</div><div class="line">        	&#125;, 500)</div><div class="line">    	&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">    const component = myComponentFactory()</div><div class="line">    decorateWithToLower(component)</div><div class="line">    decorateWithValidator(component)</div><div class="line">    component.setSuffix(&apos;!&apos;)</div><div class="line">    component.printValue(&apos;My Value&apos;)</div><div class="line">    component.printValue(&apos;Invalid Value&apos;)</div></pre></td></tr></table></figure>
+<p>这都做了些什么？</p>
+<p>组件还是那个组件，装饰器变了，并且调用方式也变了。我们通过在现有对象上进行处理的方式，来代替通过工厂方法传递对象的方式来实现我们的装饰方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">decorateWithToLower(component)</div></pre></td></tr></table></figure>
+<p>这个装饰方法通过保存初始 “printValue” 方法到一个本地变量的办法来实现猴子补丁：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const originalPrintValue = inner.printValue</div></pre></td></tr></table></figure>
+<p>然后用一个方法覆盖原始方法，这个方法先将值转换为小写，再将值传递给之前储存的原始方法的副本去调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">inner.printValue = value =&gt; originalPrintValue(value.toLowerCase())</div></pre></td></tr></table></figure>
+<p>我们和之前一样创建我们的装饰器。我们先用一个转换小写装饰器包装 printValue()，再用一个验证装饰器来包装它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const component = myComponentFactory()decorateWithToLower(component)decorateWithValidator(component)</div></pre></td></tr></table></figure>
+<p>注意这里依旧使用了闭包来用于内部函数链的存储。与例一真正的区别在于我们只替换了现有对象中的一个方法，而不是返回一个全新包装后的对象。</p>
+<p><strong><em> 猴子补丁的优缺点 </em></strong></p>
+<p>为什么所有人都讨厌？因为当我调用一个库函数时，我不希望功能因为我引入了一些其他完全无关的“巨坑”库而被修改了。</p>
+<p>不幸的是，如果那个愚蠢的人类决定去猴子补丁一些原生方法或一些共享的依赖，那对我来说就没有惊喜，只剩惊吓了。</p>
+<p>如果猴子补丁只是现在用于我自己的代码，它可能并不那么糟糕，但它依旧有点古怪，一些人依旧会对它说“不”。</p>
+<p>尽管如此，它比我们之前的方法还是有一个优势。我们的装饰方法只需处理我们想要装饰的方法，组件其余的部分保持不变。这意味着我们的装饰方法只有一个职责：用新的行为包装去方法。</p>
+<p>所以，如果你不介意猴子补丁，你的基础对象又拥有需要被额外维护的公共方法，而且你希望保持代码简洁，那么这项技术可能适合你。</p>
+<p>好，那有关原型继承是怎样的？</p>
+<h3 id="方法三：原型继承"><a href="#方法三：原型继承" class="headerlink" title="方法三：原型继承"></a>方法三：原型继承</h3><p><strong><em> 什么是原型继承？ </em></strong></p>
+<p>大多数开发者习惯于 Java 或 C# 这种一个类基于另一个类的经典继承方式。简单来说，原型继承就都是用对象代替类：“一个对象从其他对象继承上属性。”</p>
+<p>它的实现机制在 JavaScript 中也十分简单。所有对象都有同一个原型。事实上，所有原型链的终点都指向 “Object”，它也是所有原型链的基础。</p>
+<p><strong><em> 委托 </em></strong></p>
+<p>你可以通过设置对象的原型声明一个对象基于另一个对象。这就意味着：如果需要访问一个对象成员，对象首先会在自身之中查找，但如果没有找到，它会去它的原型上继续查找，并一直按照这个方式查找到原型链的终点。</p>
+<p>我不喜欢使用 JavaScript 中的 new 关键字，我不在这深入说为什么，如果你感兴趣，可以到文章的最后查看。而在我看来，实现原型继承最好的方法是使用 Object.create(prototype)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">const myBaseObject = &#123; myProperty: &apos;oh hai&apos; &#125;</div><div class="line">const myNewObject = Object.create(myBaseObject)</div><div class="line">myNewObject.newMethod = () =&gt; &#123; console.log(myBaseObject.myProperty) &#125;</div></pre></td></tr></table></figure>
+<p>这里我们不仅设置 myBaseObject 作为 myNewObject 的原型来继承，还展示了如何访问基类的成员。这里没有受保护的或私有的作用域，也没有抽象成员需要我们考虑。如果你想只暴露新的对象而不显示基类对象，只需通过一个函数包裹，然后返回所有你想要的。函数总是能处理你在 JavaScript 中遇到的任何问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">function myComponentFactory() &#123;</div><div class="line">    let suffix = &apos;&apos;</div><div class="line"></div><div class="line">	    return &#123;</div><div class="line">	        setSuffix: suf =&gt; suffix = suf,</div><div class="line">	        printValue: value =&gt; console.log(`value is $&#123;value + suffix&#125;`)</div><div class="line">	    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line"></div><div class="line">	    const instance = Object.create(inner)</div><div class="line"></div><div class="line">	    instance.printValue = value =&gt; inner.printValue(value.toLowerCase())</div><div class="line"></div><div class="line">	    return instance</div><div class="line">&#125;</div><div class="line"></div><div class="line">function validatorDecorator(inner) &#123;</div><div class="line"></div><div class="line">	    const instance = Object.create(inner)</div><div class="line">	    instance.printValue = value =&gt; &#123;</div><div class="line">	        const isValid = ~value.indexOf(&apos;My&apos;)</div><div class="line">	        setTimeout(() =&gt; &#123;</div><div class="line">	            if (isValid) inner.printValue(value)</div><div class="line">	            else console.log(&apos;not valid man...&apos;)</div><div class="line">	        &#125;, 500)</div><div class="line">	    &#125;</div><div class="line">	return instance</div><div class="line">&#125;</div><div class="line"></div><div class="line">const component = validatorDecorator(toLowerDecorator(myComponentFactory()))</div><div class="line">component.setSuffix(&apos;!&apos;)</div><div class="line">component.printValue(&apos;My Value&apos;)</div><div class="line">component.printValue(&apos;Invalid Value&apos;)</div></pre></td></tr></table></figure>
+<p>这个例子里我构造了一个新的对象来访问内部的对象，这和第一个例子十分地相似。然而，第一个例子中有个缺陷就是为了确保初始对象的每个成员都可访问，需要将每个成员变量复制到新的包装对象上。在这个例子中，我们发挥对象继承的优势，新对象创建时使用初始对象作为它的原型，这样我们就不必在新对象上定义 “setSuffix” 方法，当这个方法被调用时，原型链会检查这个成员是否存在。</p>
+<p>在 JavaScript 中使用继承来实现一个装饰器是一个显而易见并高效的方式。有趣的是，装饰者模式的最初设计目的之一就是解决传统继承的一些局限性。也就是说，采用传统的继承，无法将不同的行为联系起来，必须事先定义类的继承关系，这会导致它成为一个僵化的层次结构（译者并不赞同这个观点）。幸运的是，原型继承没有这个限制，从上面的例子就可以看到，我可以选择任何对象作为原型。</p>
+<p>这使得用原型继承来实现装饰器是一个极好的选择。</p>
+<h3 id="方法四：代理"><a href="#方法四：代理" class="headerlink" title="方法四：代理"></a>方法四：代理</h3><p>ES6中增加了代理模块，它看上去有希望去完成一些关于面向切片的编程技术。让我们来看看，它能不能帮我们创建一个装饰器。</p>
+<p><strong><em> 什么是代理？ </em></strong></p>
+<blockquote>
+<p>“代理对象通常用来为基本操作定义自定义行为（例如：属性查找，赋值，枚举或函数调用等）。 -<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="external">MDN</a><br>哇~我们可以在属性查找和函数调用时注入自定义行为？听起来很强大？没错，很强大。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">require(&apos;harmony-reflect&apos;)function myComponentFactory() &#123;</div><div class="line"></div><div class="line">    let suffix = &apos;&apos;</div><div class="line"></div><div class="line">    return &#123;</div><div class="line">        setSuffix: suff =&gt; suffix = suff,</div><div class="line">        printValue: value =&gt; console.log(`value is $&#123;value + suffix&#125;`)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line">    return new Proxy(inner, &#123;</div><div class="line">        get: (target, name) =&gt; &#123;</div><div class="line">            return (name === &apos;printValue&apos;)</div><div class="line">                ? value =&gt; target.printValue(value.toLowerCase())</div><div class="line">                : target[name]</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"> function validatorDecorator(inner) &#123;</div><div class="line">    return new Proxy(inner, &#123;</div><div class="line">        get: (target, name) =&gt; &#123;</div><div class="line">            return (name === &apos;printValue&apos;)</div><div class="line">                ? value =&gt; &#123;</div><div class="line">                    const isValid = ~value.indexOf(&apos;my&apos;)</div><div class="line"></div><div class="line">                    setTimeout(() =&gt; &#123;</div><div class="line">                        if (isValid) target.printValue(value)</div><div class="line">                        else console.log(&apos;not valid man...&apos;)</div><div class="line">                    &#125;, 500)</div><div class="line">                &#125;</div><div class="line">                : target[name]</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">const component = toLowerDecorator(validatorDecorator(myComponentFactory()))</div><div class="line">component.setSuffix(&apos;!&apos;)</div><div class="line">component.printValue(&apos;My Value&apos;)</div><div class="line">component.printValue(&apos;Invalid Value&apos;)</div></pre></td></tr></table></figure>
+<p>首先，这是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require(&apos;harmony-reflect&apos;)</div></pre></td></tr></table></figure>
+<p>因为，我用 node.js 运行代码，然而 node.js 暂时还不支持代理模块。如果你想要在 node 中使用代理需要使用以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node.exe --harmony-proxies</div></pre></td></tr></table></figure>
+<p>即使这样，在写这篇博客时，node 中的代理模块依旧不是ES6的标准模块。然而，如果你：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install harmony-reflect</div></pre></td></tr></table></figure>
+<p>并向之前一样在代码中引入该模块，那么你会得到一个接近最新ES6标准的代理对象来使用，而你现在仍必须使用上面的方法。（我猜测 npm 模块的底层使用的仍是不符合ES6规范的代理对象。）</p>
+<p>接下来你会发现组件依旧没有变化，而装饰方法变得不同了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line">    return new Proxy(inner, &#123;</div><div class="line">        get: (target, name) =&gt; &#123;</div><div class="line">            return (name === &apos;printValue&apos;)</div><div class="line">                ? value =&gt; target.printValue(value.toLowerCase())</div><div class="line">                : target[name]</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>代理赋予你无比强大的力量，值得你阅读 <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="external">MDN</a> 上代理部分。</p>
+<p>在这里，装饰器将内部对象作为参数输入，并返回它的代理。在代理中，我们只处理一件事：属性访问。我们通过为 “get” 处理程序添加自定义行为来做到这点。</p>
+<p>我们测试一下看看属性是否是我们想装饰的属性，如果是则返回新的装饰器方法（在这个例子中，方法就是将值转换为小写并传递值给内部对象的 printValue 方法）；如果属性名不符合就直接返会内部对象的成员。</p>
+<p>细心的你一定会发现我们这里又使用到了闭包。</p>
+<p><strong><em> 代理模式的优劣势 </em></strong></p>
+<p>这里的关键点是，虽然为了创建我们的代理对象不得不做一些额外的工作，但无论装饰对象中有多少个成员，装饰器都不会变的更复杂。所以，代理模式有2个优点：</p>
+<p>它不是猴子补丁</p>
+<p>不必手动重新定义内部对象的每个成员</p>
+<p>然而，这可能有点杀鸡用牛刀了，原型继承有着相同的优势。代理的实现是被用来处理面向切片风格的东西，而不是装饰器。</p>
+<p>还有，就像我之前说的，支持还不够好。如果你在 node 环境中，那你可以用我之前的方法 polyfill。然而，如果你在浏览器环境中，现在所有的 IE 版本都不支持， Chrome 也只在 49 版本支持。不幸的是，从我的理解看来，可能在浏览器中 ployfill 这个特性将会很困难，很可能会造成<a href="https://www.npmjs.com/package/babel-plugin-proxy" target="_blank" rel="external">严重的性能问题</a>。</p>
+<h3 id="方法五：中间件"><a href="#方法五：中间件" class="headerlink" title="方法五：中间件"></a>方法五：中间件</h3><p>之前的那些例子都有一个非常棒的特性，那就是初始的对象不必知道它被装饰了。通过闭包，猴子补丁，继承或者代理来扩展初始对象的行为而不必修改它，这就是面向对象设计的开闭原则。</p>
+<p>假设基础对象一开始就知道自己的创建过程中会被一个特定的方法装饰，会怎么样？还有，假设想在基础功能和装饰器之间增加更多影响，会怎么样？假设通过把一些装饰器的逻辑放到基础对象中使装饰器的代码更为简单,会怎么样？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">function myComponentFactory() &#123;</div><div class="line">    let suffix = &apos;&apos;</div><div class="line">    const instance = &#123;</div><div class="line"></div><div class="line">        setSuffix: suff =&gt; suffix = suff,</div><div class="line">        printValue: value =&gt; console.log(`value is $&#123;value + suffix&#125;`),</div><div class="line">        addDecorators: decorators =&gt; &#123;</div><div class="line">            let printValue = instance.printValue</div><div class="line">            decorators.slice().reverse().forEach(decorator =&gt; printValue = decorator(printValue))</div><div class="line">            instance.printValue = printValue</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return instance</div><div class="line">  &#125;</div><div class="line"></div><div class="line"></div><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line">    return value =&gt; inner(value.toLowerCase())</div><div class="line">&#125;</div><div class="line"></div><div class="line">function validatorDecorator(inner) &#123;</div><div class="line">    return value =&gt; &#123;</div><div class="line">		const isValid = ~value.indexOf(&apos;My&apos;)</div><div class="line">	    setTimeout(() =&gt; &#123;</div><div class="line">	        if (isValid) inner(value)</div><div class="line">	        else console.log(&apos;not valid man...&apos;)</div><div class="line">	   	&#125;, 500)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> const component = myComponentFactory()</div><div class="line"> component.addDecorators([toLowerDecorator, validatorDecorator])</div><div class="line"> component.setSuffix(&apos;!&apos;)</div><div class="line"> component.printValue(&apos;My Value&apos;)</div><div class="line"> component.printValue(&apos;Invalid Value&apos;)</div></pre></td></tr></table></figure>
+<p>注意到主要的区别了么？我们的初始对象知道它会被装饰，并提供了一个特别的方法来添加装饰器。这里组件设置自己的装饰链，你只需提供装饰方法的列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">component.addDecorators([toLowerDecorator, validatorDecorator])</div></pre></td></tr></table></figure>
+<p>“addDecorators” 方法会遍历传入到方法中的装饰器，然后将最后一个装饰器方法执行后的结果赋给公共成员变量。这就是基础对象给自身设置装饰链。值得注意的是，方法里翻转了装饰器调用的顺序，为了参数传递时更具可读性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">addDecorators: decorators =&gt; &#123;</div><div class="line">    let printValue = instance.printValue</div><div class="line">    decorators.slice().reverse().forEach(decorator =&gt; printValue = decorator(printValue))</div><div class="line">    instance.printValue = printValue</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>装饰器方法本身将便的十分简单，它所要做的全部就是更具需要装饰传入的方法并返回这个方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function toLowerDecorator(inner) &#123;</div><div class="line">    return value =&gt; inner(value.toLowerCase())</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p><strong><em> 中间件的优劣势 </em></strong></p>
+<p>通过基础对象自身来创建装饰链，能够获得装饰器更多的控制权。在这个例子中，它被用来通过 reverse() 方法来改变装饰器数组的顺序。</p>
+<p>在创建装饰链时获得更多的控制权也导致了装饰方法便得极其简单。</p>
+<p>因此，通过将对象设置为可以被装饰和完成建立装饰链的工作，我们达成了这些目标：</p>
+<p>简单的装饰方法</p>
+<p>建立装饰链时，更多的控制权</p>
+<p>简单地建立装饰列表，只需传递一个有顺序的装饰器数组的方法，而不必关心特殊装饰者模式实现的构造机制</p>
+<p>依旧符合开闭原则，基本实现允许在不修改原始对象的情况下完成装饰</p>
+<p>它不是猴子补丁，也不依赖于代理</p>
+<p>这是最复杂的实现方式，如果你设置了一些重量级的装饰器，需要更多的管理而不是简单的包装，那么这个实现可能适合你。</p>
+<p>我称呼它为“中间件”实现，是因为：</p>
+<p>我想不出比这个更好的（译者：- -||）</p>
+<p>Dan Abramov 使用相同的方法在他的  <a href="http://redux.js.org/docs/advanced/Middleware.html" target="_blank" rel="external">redux</a>中间件实现中</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>我们着眼于用5个不同的技术来实现装饰者模式，在这过程中我们学到了不少。</p>
+<p>一个原始的做法，它需要手动地从内部对象复制每个成员到装饰对象上。但我们从中学到了通过闭包来遮盖变量，就好像它们是私有的。</p>
+<p>用猴子补丁的方法解决了“复制每个成员”的问题，但是它也有相当大的副作用。</p>
+<p>用原型继承的方式解决了“复制每个成员”的问题，似乎完美无缺。</p>
+<p>使用 ES6 代理对象又一次解决了之前的问题。然而，代理对象还没有被很好的支持，虽然它是无比强大的，但也强大到超出了这个使用场景。在当前场景下，它并不能比原型继承做得更多。</p>
+<p>在“中间件”实现中，基础对象设置了自身的装饰链，这使得它和简单的装饰方法一起成为一个强大并灵活的实现。</p>
+<h3 id="从中我们能总结哪些结论？"><a href="#从中我们能总结哪些结论？" class="headerlink" title="从中我们能总结哪些结论？"></a>从中我们能总结哪些结论？</h3><p>每个实现方式都使用了闭包。这应该能让你明白它在 JavaScript 中有多重要。如果你仍不理解它，退回去再读一次，或者去阅读一些别人更好的描述。</p>
+<p>哪个是明显的赢家？当我开始写这篇的时候，我期望每个技术都有它的优势和劣势，取决于使用场景。事实上，写到最后我认为只有2种实现方式值得被使用：</p>
+<p>原型继承</p>
+<p>中间件</p>
+<p>只有当需要对装饰链进行更多控制的时候才使用中间件的方式，否则，原型继承似乎对我来说就是最终赢家。它具有所有的优点：</p>
+<p>不需要修改基础对象</p>
+<p>不需要复制每个成员到新的对象</p>
+<p>不是猴子补丁</p>
+<p>不支持差的代码</p>
+<p>相对简单的装饰方法</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/14/javascript-css-中的小技巧/" rel="next" title="javascript / css 中的小技巧">
+                <i class="fa fa-chevron-left"></i> javascript / css 中的小技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/14/Object-defineProperty注意事项/" rel="prev" title="Object.defineProperty注意事项">
+                Object.defineProperty注意事项 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Johnny" />
+          <p class="site-author-name" itemprop="name">Johnny</p>
+           
+              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#嗯？这都是怎么一回事哪？"><span class="nav-number">1.</span> <span class="nav-text">嗯？这都是怎么一回事哪？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首先，需要被装饰的组件"><span class="nav-number"></span> <span class="nav-text">首先，需要被装饰的组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何装饰这个组件"><span class="nav-number">1.</span> <span class="nav-text">如何装饰这个组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：-闭包"><span class="nav-number">2.</span> <span class="nav-text">方法一： 闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#该如何使用闭包？"><span class="nav-number">2.1.</span> <span class="nav-text">该如何使用闭包？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#官方：什么是闭包？"><span class="nav-number">2.2.</span> <span class="nav-text">官方：什么是闭包？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：猴子补丁"><span class="nav-number">3.</span> <span class="nav-text">方法二：猴子补丁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法三：原型继承"><span class="nav-number">4.</span> <span class="nav-text">方法三：原型继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法四：代理"><span class="nav-number">5.</span> <span class="nav-text">方法四：代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法五：中间件"><span class="nav-number">6.</span> <span class="nav-text">方法五：中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从中我们能总结哪些结论？"><span class="nav-number">8.</span> <span class="nav-text">从中我们能总结哪些结论？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Johnny</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    Theme &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Muse
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
