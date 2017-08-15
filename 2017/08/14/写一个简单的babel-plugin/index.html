@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="simple chinese">
+<html class="theme-next gemini use-motion" lang="zh-cn">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -95,13 +95,14 @@
 
 
 <meta name="description" content="在nodeJS强大的威力下，javascript能做的事越来越多，在之前的项目中有用到es6、es7的语法，由于有babel的支持，所以兼容性的问题不存在了。之前一直用babel的plugin来转换语法，比如箭头函数  1let a=_=&amp;gt; _+1 象这种语法结构 ，如果不解析的话，稍微老一点的浏览器会不识别此类方法，然后抛出一个错误. babel转换器依靠nodeJS作用运行环境，把上述">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="写一个简单的babel-plugin">
 <meta property="og:url" content="http://yoursite.com/2017/08/14/写一个简单的babel-plugin/index.html">
 <meta property="og:site_name" content="life like a box of chocolate">
 <meta property="og:description" content="在nodeJS强大的威力下，javascript能做的事越来越多，在之前的项目中有用到es6、es7的语法，由于有babel的支持，所以兼容性的问题不存在了。之前一直用babel的plugin来转换语法，比如箭头函数  1let a=_=&amp;gt; _+1 象这种语法结构 ，如果不解析的话，稍微老一点的浏览器会不识别此类方法，然后抛出一个错误. babel转换器依靠nodeJS作用运行环境，把上述">
-<meta property="og:locale" content="simple chinese">
-<meta property="og:updated_time" content="2017-08-15T01:17:17.310Z">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-08-15T04:59:39.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="写一个简单的babel-plugin">
 <meta name="twitter:description" content="在nodeJS强大的威力下，javascript能做的事越来越多，在之前的项目中有用到es6、es7的语法，由于有babel的支持，所以兼容性的问题不存在了。之前一直用babel的plugin来转换语法，比如箭头函数  1let a=_=&amp;gt; _+1 象这种语法结构 ，如果不解析的话，稍微老一点的浏览器会不识别此类方法，然后抛出一个错误. babel转换器依靠nodeJS作用运行环境，把上述">
@@ -112,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -151,7 +152,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="simple chinese">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
 
   
   
@@ -174,7 +175,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">study study hard day day up</p>
+        <h1 class="site-subtitle" itemprop="description">study study hard day day up</h1>
       
   </div>
 
@@ -199,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -209,17 +210,27 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+        <li class="menu-item menu-item-javascript">
+          <a href="/tags/javascript/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br />
             
-            Tags
+            javascript
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-css">
+          <a href="/tags/css/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-css3"></i> <br />
+            
+            css
           </a>
         </li>
       
@@ -261,7 +272,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnny">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/psu.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -273,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">写一个简单的babel-plugin</h1>
+          <h2 class="post-title" itemprop="name headline">写一个简单的babel-plugin</h2>
         
 
         <div class="post-meta">
@@ -283,7 +294,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T17:19:10+08:00">
                 2017-08-14
@@ -333,7 +344,22 @@
 <p><strong><em> 那babel到底是怎样做的了？ </em></strong></p>
 <p><a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md" target="_blank" rel="external">关于babel的plugin详情，请点击 plugin-handbook </a></p>
 <p>我这里只描述我自已对babel 自定义plugin的理解：</p>
-
+<p><strong> 目标 </strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function square(n) &#123;</div><div class="line"> return n * n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面是一个javascript中的普通函数声明，执行此函数，传入参数据n,返回的是n的平方.出于研究的目的，现在希望返回的是 <strong><em> z X z </em></strong></p>
+<p>在不知道babel转换的原理之前，我们设想这样的操作应该是这样几种情况   <strong>(至少我只能想到这几种情况):</strong> </p>
+<ul>
+<li><p>用字符串方式把<code>n</code>替换成<code>z</code></p>
+</li>
+<li><p>用正则方式把 <code>n</code>替换成<code>z</code></p>
+</li>
+</ul>
+<h6 id="但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗-那就请出babel转换的工具吧"><a href="#但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗-那就请出babel转换的工具吧" class="headerlink" title=" 但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗 那就请出babel转换的工具吧 "></a><strong><strong> 但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗 那就请出babel转换的工具吧 </strong></strong></h6><h3 id="babylon"><a href="#babylon" class="headerlink" title="babylon"></a><a href="https://www.npmjs.com/package/babylon" title="Babylon 是 Babel 的解析器" target="_blank" rel="external">babylon</a></h3><p>Babylon 是 Babel 的解析器,它主要是把 javascript代码转换成一个ast语法树,上面的一个函数经过传换后，就变成了一个tree,<a href="http://astexplorer.net/#/Z1exs6BWMq" target="_blank" rel="external">详情查看</a></p>
+<h3 id="babel-traverse"><a href="#babel-traverse" class="headerlink" title="babel-traverse"></a><a href="https://www.npmjs.com/package/babel-traverse" title="Babel Traverse（遍历）模块维护了整棵树的状态，并且负责替换、移除和添加节点。" target="_blank" rel="external">babel-traverse</a></h3><p>Babel Traverse（遍历）模块维护了整棵树的状态，并且负责替换、移除和添加节点。</p>
+<h3 id="babel-types"><a href="#babel-types" class="headerlink" title="babel-types"></a><a href="https://www.npmjs.com/package/babel-types" target="_blank" rel="external">babel-types</a></h3><p>Babel Types模块是一个用于 AST 节点的 Lodash 式工具库（译注：Lodash 是一个 JavaScript 函数工具库，<br>提供了基于函数式编程风格的众多工具函数）， 它包含了构造、验证以及变换 AST 节点的方法</p>
+<h3 id="babel-generator"><a href="#babel-generator" class="headerlink" title="babel-generator"></a><a href="https://www.npmjs.com/package/babel-generator" target="_blank" rel="external">babel-generator</a></h3><p>Babel Generator模块是 Babel 的代码生成器，它读取AST并将其转换为代码和源码映射（sourcemaps）。</p>
+<p>通上面一些工具和官方提供的文档，做了一次简单的转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">import * as babylon from &quot;babylon&quot;;</div><div class="line">import * as t from &apos;babel-types&apos;;</div><div class="line">import traverse from &quot;babel-traverse&quot;;</div><div class="line">import generate from &apos;babel-generator&apos;</div><div class="line">import template from &quot;babel-template&quot;;</div><div class="line">const code = `function square(n) &#123;</div><div class="line">  return n * n;</div><div class="line">&#125;`;</div><div class="line">const ast = babylon.parse(code);</div><div class="line">traverse(ast, &#123;</div><div class="line">  enter(path) &#123;</div><div class="line">    if (t.isIdentifier(path.node, &#123; name: &quot;n&quot; &#125;)) &#123;</div><div class="line">        path.node.name = &quot;x&quot;;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">var r_code = generate( ast ) </div><div class="line"></div><div class="line">console.log(r_code) //后就是转换成的代码了.</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -347,6 +373,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
       
 
       
@@ -417,16 +449,25 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/psu.jpg"
                alt="Johnny" />
           <p class="site-author-name" itemprop="name">Johnny</p>
            
-              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
-          
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -434,7 +475,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -447,7 +488,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -471,6 +512,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗-那就请出babel转换的工具吧"><span class="nav-number">1.</span> <span class="nav-text"> 但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗 那就请出babel转换的工具吧 </span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babylon"><span class="nav-number"></span> <span class="nav-text">babylon</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babel-traverse"><span class="nav-number"></span> <span class="nav-text">babel-traverse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babel-types"><span class="nav-number"></span> <span class="nav-text">babel-types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#babel-generator"><span class="nav-number"></span> <span class="nav-text">babel-generator</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -497,19 +554,6 @@
   
 </div>
 
-
-  <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
-  </div>
-
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">
-    Theme &mdash;
-    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-      NexT.Muse
-    </a>
-  </div>
 
 
         
@@ -592,6 +636,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="simple chinese">
+<html class="theme-next gemini use-motion" lang="zh-cn">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -101,7 +101,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/14/CSS-Hack/index.html">
 <meta property="og:site_name" content="life like a box of chocolate">
 <meta property="og:description" content="css样式选择器中存在两个名称相同的属性，浏览器一般会以最后面的属性为准。 IE加上一个下划线“_”，IE 6 照样可以识别该属性，而且只有IE 6可以识别。  特定的css属性值后缀“\9”，从而做到只有IE8及以下浏览器能够识别该属性  IE 7也支持在选择器前添加+html和:first-child+html ，让当前选择器成为*+html的后辈选择器，只有IE 7可以识别此类样式选择器">
-<meta property="og:locale" content="simple chinese">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:updated_time" content="2017-08-14T07:30:49.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS Hack">
@@ -113,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -152,7 +152,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="simple chinese">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
 
   
   
@@ -175,7 +175,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">study study hard day day up</p>
+        <h1 class="site-subtitle" itemprop="description">study study hard day day up</h1>
       
   </div>
 
@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -210,17 +210,27 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+        <li class="menu-item menu-item-javascript">
+          <a href="/tags/javascript/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br />
             
-            Tags
+            javascript
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-css">
+          <a href="/tags/css/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-css3"></i> <br />
+            
+            css
           </a>
         </li>
       
@@ -262,7 +272,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnny">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/psu.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -274,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSS Hack</h1>
+          <h2 class="post-title" itemprop="name headline">CSS Hack</h2>
         
 
         <div class="post-meta">
@@ -284,7 +294,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T15:27:00+08:00">
                 2017-08-14
@@ -436,12 +446,12 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/psu.jpg"
                alt="Johnny" />
           <p class="site-author-name" itemprop="name">Johnny</p>
            
-              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
-          
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -449,7 +459,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -462,7 +472,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -512,19 +522,6 @@
   
 </div>
 
-
-  <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
-  </div>
-
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">
-    Theme &mdash;
-    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-      NexT.Muse
-    </a>
-  </div>
 
 
         
@@ -607,6 +604,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

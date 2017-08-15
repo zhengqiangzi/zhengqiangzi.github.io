@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="simple chinese">
+<html class="theme-next gemini use-motion" lang="zh-cn">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -101,7 +101,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/14/babel-polyfill-使用/index.html">
 <meta property="og:site_name" content="life like a box of chocolate">
 <meta property="og:description" content="在babel出现之前。如果开发者想使用javascript最新的特点的api，非常困难。究其原因，兼容性太差。为了能使用最新的api，要么自己模拟一下，要么网上down一下，痛苦。。。。 这段痛苦的岁月，相信大部分开发都都有过体验，产品经理总是会和你说，“你看这里报错了。。那里报错了。。。。”心中一群草泥玛呼萧而过。  至到它的出现。Babel相信使用过他的同学，应该知道这是一个多么牛B的转换器">
-<meta property="og:locale" content="simple chinese">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://yoursite.com/images/q1.png">
 <meta property="og:image" content="http://yoursite.com/images/q2.png">
 <meta property="og:image" content="http://yoursite.com/images/q3.png">
@@ -117,7 +117,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -156,7 +156,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="simple chinese">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
 
   
   
@@ -179,7 +179,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">study study hard day day up</p>
+        <h1 class="site-subtitle" itemprop="description">study study hard day day up</h1>
       
   </div>
 
@@ -204,7 +204,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -214,17 +214,27 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+        <li class="menu-item menu-item-javascript">
+          <a href="/tags/javascript/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-ravelry"></i> <br />
             
-            Tags
+            javascript
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-css">
+          <a href="/tags/css/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-css3"></i> <br />
+            
+            css
           </a>
         </li>
       
@@ -266,7 +276,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnny">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/psu.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -278,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">babel-polyfill 使用</h1>
+          <h2 class="post-title" itemprop="name headline">babel-polyfill 使用</h2>
         
 
         <div class="post-meta">
@@ -288,7 +298,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T13:36:35+08:00">
                 2017-08-14
@@ -442,10 +452,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -453,12 +463,12 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/images/psu.jpg"
                alt="Johnny" />
           <p class="site-author-name" itemprop="name">Johnny</p>
            
-              <p class="site-description motion-element" itemprop="description">路漫漫其修远兮 吾将上下而求索</p>
-          
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
 
@@ -466,7 +476,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -479,7 +489,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -545,19 +555,6 @@
   
 </div>
 
-
-  <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
-  </div>
-
-  <span class="post-meta-divider">|</span>
-
-  <div class="theme-info">
-    Theme &mdash;
-    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-      NexT.Muse
-    </a>
-  </div>
 
 
         
@@ -640,6 +637,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
