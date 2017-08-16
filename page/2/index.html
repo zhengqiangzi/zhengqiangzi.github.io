@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -231,6 +231,16 @@
               <i class="menu-item-icon fa fa-fw fa-css3"></i> <br />
             
             css
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-another">
+          <a href="/tags/another" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-map"></i> <br />
+            
+            其它
           </a>
         </li>
       
@@ -267,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/javascript-css-中的小技巧/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/写一个简单的babel-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Johnny">
@@ -286,7 +296,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/14/javascript-css-中的小技巧/" itemprop="url">javascript / css 中的小技巧</a></h2>
+                <a class="post-title-link" href="/2017/08/14/写一个简单的babel-plugin/" itemprop="url">写一个简单的babel-plugin</a></h2>
         
 
         <div class="post-meta">
@@ -296,9 +306,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T16:23:24+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T17:19:10+08:00">
                 2017-08-14
               </time>
             
@@ -338,361 +348,32 @@
       
         
           
-            <h3 id="给文本加链接"><a href="#给文本加链接" class="headerlink" title="给文本加链接"></a>给文本加链接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;baidu&quot;.link(&quot;http://www.baidu.com&quot;)=&lt;a herf=&quot;http://www.baidu.com&gt;baidu&lt;/a&gt;&quot;</div></pre></td></tr></table></figure>
-<h3 id="setTimeout执行绑定参数"><a href="#setTimeout执行绑定参数" class="headerlink" title="setTimeout执行绑定参数"></a>setTimeout执行绑定参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var callback = function(a,b)&#123;</div><div class="line"></div><div class="line">	console.log(a + b);  // &apos;foobar&apos;</div><div class="line"></div><div class="line">&#125;</div><div class="line">setTimeout(callback,100,&apos;foo&apos;,&apos;bar&apos;)</div></pre></td></tr></table></figure>
-<h3 id="创建长宽比固定的元素"><a href="#创建长宽比固定的元素" class="headerlink" title="创建长宽比固定的元素"></a>创建长宽比固定的元素</h3><p> 通过设置父级窗口的padding-bottom可以达到让容器保持一定的长度比的目的，这在响应式页面设计中比较有用，能够保持元素不变形。<br> 注:当padding-bottom的值为百分比时，其它百分比的参照值为当前元素的宽度 </p>
-<h3 id="整数的操作"><a href="#整数的操作" class="headerlink" title="整数的操作"></a>整数的操作</h3><p>JavaScript中是没有整型概念的，但利用好位操作符可以轻松处理，同时获得效率上的提升。<br>|0和~~是很好的一个例子，使用这两者可以将浮点转成整型且效率方面要比同类的parseInt,Math.round 要快。在处理像素及动画位移等效果的时候会很有用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var foo = (12.4 / 4.13) | 0;//结果为3</div><div class="line">var bar = ~~(12.4 / 4.13);//结果为3</div></pre></td></tr></table></figure></p>
-<p><code>顺便说句，!!将一个值方便快速转化为布尔值 !!window===true</code></p>
-<h3 id="万物皆对象"><a href="#万物皆对象" class="headerlink" title="万物皆对象"></a>万物皆对象</h3><p>在JavaScript的世界，万物皆对象。除了null和undefined，其他基本类型数字，字符串和布尔值都有对应有包装对象。对象的一个特征是你可以在它身上直接调用方法。对于数字基本类型，当试图在其身上调用toString方法会失败，但用括号括起来后再调用就不会失败了，内部实现是用相应的包装对象将基本类型转为对象。所以</p>
-<p><strong><em> 1.toString()==new Number(1).toString() </em></strong></p>
-<p>因此，你的确可以把基本类型数字，字符串，布尔等当对象使用的，只是注意语法要得体。</p>
-<p>同时我们注意到，JavaScript中数字是不分浮点和整形的，所有数字其实均是浮点类型，只是把小数点省略了而以，比如你看到的1可以写成1.，这也就是为什么当你试图1.toString()时会报错，所以正确的写法应该是这样：1..toString()，或者如上面所述加上括号，这里括号的作用是纠正JS解析器，不要把1后面的点当成小数点。内部实现如上面所述，是将1.用包装对象转成对象再调用方法。</p>
-<h3 id="console-table"><a href="#console-table" class="headerlink" title="console.table"></a>console.table</h3><p>Chrome专属，IE绕道的console方法。可以将JavaScript关联数组以表格形式输出到浏览器console，效果很惊赞，界面很美观。</p>
-<p><img src="/images/q4.png" alt="image"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/去除inline-block元素间间距的N种方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johnny">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/psu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="life like a box of chocolate">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/去除inline-block元素间间距的N种方法/" itemprop="url">去除inline-block元素间间距的N种方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T16:10:35+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="现象描述"><a href="#现象描述" class="headerlink" title="现象描述"></a>现象描述</h3><p> 真正意义上的inline-block水平呈现的元素间，换行显示或空格分隔的情况下会有间距，很简单的个例子： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input /&gt; &lt;input type=&quot;submit&quot; /&gt;</div></pre></td></tr></table></figure>
-<p>我们使用CSS更改非inline-block水平元素为inline-block水平，也会有该问题：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.space a &#123;</div><div class="line">    display: inline-block;</div><div class="line">    padding: .5em 1em;</div><div class="line">    background-color: #cad5eb;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div class=&quot;space&quot;&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;惆怅&lt;/a&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;淡定&lt;/a&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;热血&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>这种表现是符合规范的应该有的表现<br>不过，这类间距有时会对我们布局，或是兼容性处理产生影响，需要去掉它，该怎么办呢？以下展示N种方法（欢迎补充）！</p>
-<h3 id="方法之移除空格"><a href="#方法之移除空格" class="headerlink" title="方法之移除空格"></a>方法之移除空格</h3><p>元素间留白间距出现的原因就是标签段之间的空格，因此，去掉HTML中的空格，自然间距就木有了。考虑到代码可读性，显然连成一行的写法是不可取的，我们可以：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;space&quot;&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;</div><div class="line">    惆怅&lt;/a&gt;&lt;a href=&quot;##&quot;&gt;</div><div class="line">    淡定&lt;/a&gt;&lt;a href=&quot;##&quot;&gt;</div><div class="line">    热血&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>或者是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;space&quot;&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;惆怅&lt;/a</div><div class="line">    &gt;&lt;a href=&quot;##&quot;&gt;淡定&lt;/a</div><div class="line">    &gt;&lt;a href=&quot;##&quot;&gt;热血&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>或者是借助HTML注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;space&quot;&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;惆怅&lt;/a&gt;&lt;!--</div><div class="line">    --&gt;&lt;a href=&quot;##&quot;&gt;淡定&lt;/a&gt;&lt;!--</div><div class="line">    --&gt;&lt;a href=&quot;##&quot;&gt;热血&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="使用margin负值"><a href="#使用margin负值" class="headerlink" title="使用margin负值"></a>使用margin负值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.space a &#123;</div><div class="line">    display: inline-block;</div><div class="line">    margin-right: -3px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>margin负值的大小与上下文的字体和文字大小相关，其中，间距对应大小值可以参见我之前“基于display:inline-block的列表布局”一文part 6的统计表格：<br>例如，对于12像素大小的上下文，Arial字体的margin负值为-3像素，Tahoma和Verdana就是-4像素，而Geneva为-6像素。由于外部环境的不确定性，以及最后一个元素多出的父margin值等问题，这个方法不适合大规模使用。</p>
-<h3 id="让闭合标签吃胶囊"><a href="#让闭合标签吃胶囊" class="headerlink" title="让闭合标签吃胶囊"></a>让闭合标签吃胶囊</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;space&quot;&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;惆怅</div><div class="line">    &lt;a href=&quot;##&quot;&gt;淡定</div><div class="line">    &lt;a href=&quot;##&quot;&gt;热血&lt;/a&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>注意，为了向下兼容IE6/IE7等喝蒙牛长大的浏览器，最后一个列表的标签的结束（闭合）标签不能丢。<br>在HTML5中，我们直接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;space&quot;&gt;</div><div class="line">    &lt;a href=&quot;##&quot;&gt;惆怅</div><div class="line">    &lt;a href=&quot;##&quot;&gt;淡定</div><div class="line">    &lt;a href=&quot;##&quot;&gt;热血</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>好吧，虽然感觉上有点怪怪的，但是，这是OK的。</p>
-<h3 id="使用font-size-0"><a href="#使用font-size-0" class="headerlink" title="使用font-size:0"></a>使用font-size:0</h3><p>类似下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.space &#123;</div><div class="line">    font-size: 0;</div><div class="line">&#125;</div><div class="line">.space a &#123;</div><div class="line">    font-size: 12px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这个方法，基本上可以解决大部分浏览器下inline-block元素之间的间距(IE7等浏览器有时候会有1像素的间距)。不过有个浏览器，就是Chrome, 其默认有最小字体大小限制，因为，考虑到兼容性，我们还需要添加：<br>类似下面的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.space &#123; font-size: 0; -webkit-text-size-adjust:none;&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用letter-spacing"><a href="#使用letter-spacing" class="headerlink" title="使用letter-spacing"></a>使用letter-spacing</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.space &#123;</div><div class="line">    letter-spacing: -3px;</div><div class="line">&#125;</div><div class="line">.space a &#123;</div><div class="line">    letter-spacing: 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>根据我去年的测试，该方法可以搞定基本上所有浏览器，包括吃“东鞋”、“西毒(胶囊)”、“南地(沟油)”、“北钙(三鹿)”的IE6/IE7浏览器，不过Opera浏览器下有蛋疼的问题：最小间距1像素，然后，letter-spacing再小就还原了。</p>
-<h3 id="使用word-spacing"><a href="#使用word-spacing" class="headerlink" title="使用word-spacing"></a>使用word-spacing</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.space &#123;</div><div class="line">    word-spacing: -6px;</div><div class="line">&#125;</div><div class="line">.space a &#123;</div><div class="line">    word-spacing: 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>一个是字符间距(letter-spacing)一个是单词间距(word-spacing)，大同小异。据我测试，word-spacing的负值只要大到一定程度，其兼容性上的差异就可以被忽略。因为，貌似，word-spacing即使负值很大，也不会发生重叠。</p>
-<h3 id="其他成品方法"><a href="#其他成品方法" class="headerlink" title="其他成品方法"></a>其他成品方法</h3><p>下面展示的是YUI 3 CSS Grids 使用letter-spacing和word-spacing去除格栅单元见间隔方法（注意，其针对的是block水平的元素，因此对IE8-浏览器做了hack处理）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.yui3-g &#123;</div><div class="line">    letter-spacing: -0.31em; /* webkit */</div><div class="line">    *letter-spacing: normal; /* IE &lt; 8 重置 */</div><div class="line">    word-spacing: -0.43em; /* IE &lt; 8 &amp;&amp; gecko */&#125;</div><div class="line"></div><div class="line">.yui3-u &#123;</div><div class="line">    display: inline-block;</div><div class="line">    zoom: 1; *display: inline; /* IE &lt; 8: 伪造 inline-block */</div><div class="line">    letter-spacing: normal;</div><div class="line">    word-spacing: normal;</div><div class="line">    vertical-align: top;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以下是一个名叫RayM的人提供的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">li &#123;</div><div class="line">    display:inline-block;</div><div class="line">    background: orange;</div><div class="line">    padding:10px;</div><div class="line">    word-spacing:0;</div><div class="line">    &#125;</div><div class="line">ul &#123;</div><div class="line">    width:100%;</div><div class="line">    display:table;  /* 调教webkit*/</div><div class="line">    word-spacing:-1em;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.nav li &#123; *display:inline;&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/47种常见的浏览器兼容性问题大汇总/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Johnny">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/psu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="life like a box of chocolate">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/47种常见的浏览器兼容性问题大汇总/" itemprop="url">47种常见的浏览器兼容性问题大汇总</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T15:31:33+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><h3 id="HTML对象获取问题"><a href="#HTML对象获取问题" class="headerlink" title="HTML对象获取问题"></a>HTML对象获取问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FireFox：document.getElementById(&quot;idName&quot;);</div><div class="line"></div><div class="line">ie:document.idname或者document.getElementById(&quot;idName&quot;).</div><div class="line"></div><div class="line">解决办法：统一使用document.getElementById(&quot;idName&quot;);</div></pre></td></tr></table></figure>
-<h3 id="const问题"><a href="#const问题" class="headerlink" title="const问题"></a>const问题</h3><p>说明:Firefox下,可以使用const关键字或var关键字来定义常量;IE下,只能使用var关键字来定义常量.<br><strong><em> 解决方法：统一使用var关键字来定义常量. </em></strong></p>
-<h3 id="event-x与event-y问题"><a href="#event-x与event-y问题" class="headerlink" title="event.x与event.y问题"></a>event.x与event.y问题</h3><p>说明:IE下,event对象有x,y属性,但是没有pageX,pageY属性;Firefox下,event对象有pageX,pageY属性,但是没有x,y属性.<br><strong><em>  解决方法：使用mX(mX   =   event.x   ?   event.x   :   event.pageX;)来代替IE下的event.x或者Firefox下的event.pageX.  </em></strong></p>
-<h3 id="window-location-href问题"><a href="#window-location-href问题" class="headerlink" title="window.location.href问题"></a>window.location.href问题</h3><p>说明:IE或者Firefox2.0.x下,可以使用window.location或window.location.href;Firefox1.5.x下,只能使用window.location.<br><strong><em> 解决方法：使用window.location来代替window.location.href. </em></strong></p>
-<h3 id="frame问题"><a href="#frame问题" class="headerlink" title="frame问题"></a>frame问题</h3><p>以下面的frame为例：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;frame   src=&quot;xxx.html&quot;   id=&quot;frameId&quot;   name=&quot;frameName&quot;   /&gt;</div></pre></td></tr></table></figure></p>
-<h6 id="访问frame对象"><a href="#访问frame对象" class="headerlink" title="访问frame对象:"></a>访问frame对象:</h6><p>IE:使用window.frameId或者window.frameName来访问这个frame对象.   frameId和frameName可以同名。<br>Firefox:只能使用window.frameName来访问这个frame对象.<br>另外，在IE和Firefox中都可以使用window.document.getElementById(“frameId”)来访问这个frame对象.</p>
-<h6 id="切换frame内容"><a href="#切换frame内容" class="headerlink" title="切换frame内容:"></a>切换frame内容:</h6><p>在 IE和Firefox中都可以使用window.document.getElementById(“testFrame”).src   =   “xxx.html”或window.frameName.location   =   “xxx.html”来切换frame的内容.<br>如果需要将frame中的参数传回父窗口(注意不是opener,而是parent   frame)，可以在frame中使用parent来访问父窗口。例如：parent.document.form1.filename.value=”Aqing”;</p>
-<h3 id="模态和非模态窗口问题"><a href="#模态和非模态窗口问题" class="headerlink" title="模态和非模态窗口问题"></a>模态和非模态窗口问题</h3><p>说明:IE下,可以通过showModalDialog和showModelessDialog打开模态和非模态窗口;Firefox下则不能.<br><strong><em> 解决方法：直接使用window.open(pageURL,name,parameters)方式打开新窗口。如果需要将子窗口中的参数传递回父窗口,可以在子窗口中使用window.opener来访问父窗口. 例如：var   parWin   =   window.opener;   parWin.document.getElementById(“Aqing”).value   =   “Aqing”; </em></strong></p>
-<h3 id="firefox与IE的父元素-parentElement-的区别"><a href="#firefox与IE的父元素-parentElement-的区别" class="headerlink" title="firefox与IE的父元素(parentElement)的区别"></a>firefox与IE的父元素(parentElement)的区别</h3><p>IE：obj.parentElement  VS  firefox：obj.parentNode<br><strong><em> 解决方法:   因为firefox与IE都支持DOM,因此使用obj.parentNode是不错选择. </em></strong></p>
-<h3 id="document-formName-item-“itemName”-问题"><a href="#document-formName-item-“itemName”-问题" class="headerlink" title="document.formName.item(“itemName”) 问题"></a>document.formName.item(“itemName”) 问题</h3><p>问题说明：IE下，可以使用document.formName.item(“itemName”) 或document.formName.elements [“elementName”]；Firefox 下，只能使用document.formName.elements[“elementName”]。<br><strong><em> 解决方法：统一使用document.formName.elements[“elementName”]。 </em></strong></p>
-<h3 id="集合类对象问题"><a href="#集合类对象问题" class="headerlink" title="集合类对象问题"></a>集合类对象问题</h3><p>问题说明：IE下，可以使用 () 或 [] 获取集合类对象；Firefox下，只能使用 [ ]获取集合类对象。<br><strong><em> 解决方法：统一使用 [] 获取集合类对象。</em></strong></p>
-<h3 id="自定义属性问题"><a href="#自定义属性问题" class="headerlink" title="自定义属性问题"></a>自定义属性问题</h3><p>问题说明：IE下，可以使用获取常规属性的方法来获取自定义属性，也可以使用getAttribute() 获取自定义属性；Firefox下，只能使用getAttribute() 获取自定义属性。<br><strong><em> 解决方法：统一通过getAttribute() 获取自定义属性。 </em></strong></p>
-<h3 id="input-type属性问题"><a href="#input-type属性问题" class="headerlink" title="input.type属性问题"></a>input.type属性问题</h3><p>问题说明：IE下input.type属性为只读；但是Firefox下input.type属性为读写。<br><strong><em> 解决办法：不修改input.type属性。如果必须要修改，可以先隐藏原来的input，然后在同样的位置再插入一个新的input元素。 </em></strong></p>
-<h3 id="event-srcElement问题"><a href="#event-srcElement问题" class="headerlink" title="event.srcElement问题"></a>event.srcElement问题</h3><p>问题说明：IE下，even对象有srcElement属性，但是没有target属性；Firefox下，even对象有target属性，但是没有srcElement属性。<br><strong><em> 解决方法：使用srcObj = event.srcElement ?event.srcElement : event.target;如果考虑第8条问题，就改用myEvent代替event即可。 </em></strong></p>
-<h3 id="body载入问题"><a href="#body载入问题" class="headerlink" title="body载入问题"></a>body载入问题</h3><p>问题说明：Firefox的body对象在body标签没有被浏览器完全读入之前就存在；而IE的body对象则必须在body标签被浏览器完全读入之后才存在。<br>[注] 这个问题尚未实际验证，待验证后再来修改。<br>[注] 经验证，IE6、Opera9以及FireFox2中不存在上述问题，单纯的JS脚本可以访问在脚本之前已经载入的所有对象和元素，即使这个元素还没有载入完成。</p>
-<h3 id="事件委托方法"><a href="#事件委托方法" class="headerlink" title="事件委托方法"></a>事件委托方法</h3><p>问题说明：IE下，使用document.body.onload = inject; 其中function inject()在这之前已被实现；在Firefox下，使用document.body.onload = inject();</p>
-<p><strong><em>* 解决方法：统一使用document.body.onload=new Function(’inject()’); 或者document.body.onload = function(){/</em> 这里是代码 <em>/}[注意] Function和function的区别。 </em></strong></p>
-<h3 id="Table操作问题"><a href="#Table操作问题" class="headerlink" title="Table操作问题"></a>Table操作问题</h3><p>问题说明：ie、firefox以及其它浏览器对于 table 标签的操作都各不相同，在ie中不允许对table和tr的innerHTML赋值，使用js增加一个tr时，使用appendChild方法也不管用。<br><strong><strong> 解决方法：//向table追加一个空行：var row = otable.insertRow(-1);var cell = document.createElement(“td”);cell.innerHTML = “”;cell.className = “XXXX”;row.appendChild(cell);[注] 由于俺很少使用JS直接操作表格，这个问题没有遇见过。建议使用JS框架集来操作table，如JQuery。 </strong></strong></p>
-<h3 id="对象宽高赋值问题"><a href="#对象宽高赋值问题" class="headerlink" title="对象宽高赋值问题"></a>对象宽高赋值问题</h3><p>问题说明：FireFox中类似obj.style.height = imgObj.height的语句无效。</p>
-<h3 id="cursor-hand-VS-cursor-pointer"><a href="#cursor-hand-VS-cursor-pointer" class="headerlink" title="cursor:hand   VS   cursor:pointer"></a>cursor:hand   VS   cursor:pointer</h3><p>firefox不支持hand，但ie支持pointer<br><strong><em> 解决方法:   统一使用pointer </em></strong></p>
-<h3 id="innerText在IE中能正常工作，但在FireFox中却不行"><a href="#innerText在IE中能正常工作，但在FireFox中却不行" class="headerlink" title="innerText在IE中能正常工作，但在FireFox中却不行."></a>innerText在IE中能正常工作，但在FireFox中却不行.</h3><p>需用textContent。</p>
-<p><strong><em> 解决方法: </em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if(navigator.appName.indexOf(&quot;Explorer&quot;)   &gt;   -1)&#123;</div><div class="line">        document.getElementById(&apos;element&apos;).innerText   =   &quot;my   text&quot;;</div><div class="line">&#125;   else&#123;</div><div class="line">        document.getElementById(&apos;element&apos;).textContent   =   &quot;my   text&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="CSS透明"><a href="#CSS透明" class="headerlink" title="CSS透明"></a>CSS透明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">IE：filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=60)。</div><div class="line">FF：opacity:0.6。</div><div class="line">opacity 透明，子元素会继承透明属性。解决方式：1、使用 background:rgba(0,0,0,.6) //IE8及以下无效果。 2、使用定位，背景色与子元素处于同级关系。</div></pre></td></tr></table></figure>
-<h3 id="css中的width和padding"><a href="#css中的width和padding" class="headerlink" title="css中的width和padding"></a>css中的width和padding</h3><p><strong><em> 在IE7和FF中width宽度不包括padding，在Ie6中包括padding. </em></strong></p>
-<h3 id="FF和IEBOX模型解释不一致导致相差2px"><a href="#FF和IEBOX模型解释不一致导致相差2px" class="headerlink" title="FF和IEBOX模型解释不一致导致相差2px"></a>FF和IEBOX模型解释不一致导致相差2px</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">box.style&#123;width:100;border 1px;&#125; ie理解为box.width = 100 ff理解为box.width = 100 + 1*2 = 102  //加上边框2px</div></pre></td></tr></table></figure>
-<p><strong><em> 解决方法：div{margin:30px!important;margin:28px;}<br>注意这两个margin的顺序一定不能写反， IE不能识别!important这个属性，但别的浏览器可以识别。所以在IE下其实解释成这样：div{maring:30px;margin:28px}<br>重复定义的话按照最后一个来执行，所以不可以只写margin:XXpx!important; </em></strong></p>
-<h3 id="IE5-和IE6的BOX解释不一致"><a href="#IE5-和IE6的BOX解释不一致" class="headerlink" title="IE5 和IE6的BOX解释不一致"></a>IE5 和IE6的BOX解释不一致</h3><p>IE5下div{width:300px;margin:0 10px 0 10px;},div 的宽度会被解释为300px-10px(右填充)-10px(左填充)，最终div的宽度为280px，而在IE6和其他浏览器上宽度则是以 300px+10px(右填充)+10px(左填充)=320px来计算的。这时我们可以做如下修改 div{width:300px!important;width /**/:340px;margin:0 10px 0 10px}</p>
-<h3 id="ul和ol列表缩进问题"><a href="#ul和ol列表缩进问题" class="headerlink" title="ul和ol列表缩进问题"></a>ul和ol列表缩进问题</h3><p>消除ul、ol等列表的缩进时，样式应写成：list-style:none;margin:0px;padding:0px;<br>经验证，在IE中，设置margin:0px可以去除列表的上下左右缩进、空白以及列表编号或圆点，设置padding对样式没有影响；在 Firefox 中，设置margin:0px仅仅可以去除上下的空白，设置padding:0px后仅仅可以去掉左右缩进，还必须设置list- style:none才能去除列表编号或圆点。也就是说，在IE中仅仅设置margin:0px即可达到最终效果，而在Firefox中必须同时设置margin:0px、 padding:0px以及list-style:none三项才能达到最终效果。</p>
-<h3 id="元素水平居中问题"><a href="#元素水平居中问题" class="headerlink" title="元素水平居中问题"></a>元素水平居中问题</h3><p>FF: margin:0 auto;<br>IE: 父级{ text-align:center; }</p>
-<h3 id="Div的垂直居中问题"><a href="#Div的垂直居中问题" class="headerlink" title="Div的垂直居中问题"></a>Div的垂直居中问题</h3><p>vertical-align:middle; 将行距增加到和整个DIV一样高：line-height:200px; 然后插入文字，就垂直居中了。缺点是要控制内容不要换行。</p>
-<h3 id="margin加倍的问题"><a href="#margin加倍的问题" class="headerlink" title="margin加倍的问题"></a>margin加倍的问题</h3><p>设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。解决方案是在这个div里面加上display:inline; </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;imfloat&quot;&gt;</div><div class="line">/*相应的css为*/</div><div class="line">#imfloat&#123; </div><div class="line">	float:left; </div><div class="line">	margin:5px;/*IE下理解为10px*/ </div><div class="line">	display:inline;/*IE下再理解为5px*/</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h3 id="IE与宽度和高度的问题"><a href="#IE与宽度和高度的问题" class="headerlink" title="IE与宽度和高度的问题"></a>IE与宽度和高度的问题</h3><p>IE不认得min-这个定义，但实际上它把正常的width和height当作有min的情况来使。这样问题就大了，如果只用宽度和高度，正常的浏览器里这两个值就不会变，如果只用min-width和min-height的话，IE下面根本等于没有设置宽度和高度。比如要设置背景图片，这个宽度是比较重要的。要解决这个问题，可以这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#box&#123; width: 80px; height: 35px;&#125;html&gt;body #box&#123; width: auto; height: auto; min-width: 80px; min-height: 35px;&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="页面的最小宽度"><a href="#页面的最小宽度" class="headerlink" title="页面的最小宽度"></a>页面的最小宽度</h3><p>如上一个问题，IE不识别min，要实现最小宽度，可用下面的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#container&#123; min-width: 600px; width:expression(document.body.clientWidth&lt; 600? &quot;600px&quot;: &quot;auto&quot; );&#125;</div></pre></td></tr></table></figure></p>
-<p>第一个min-width是正常的；但第2行的width使用了Javascript，这只有IE才认得，这也会让你的HTML文档不太正规。它实际上通过Javascript的判断来实现最小宽度。</p>
-<h3 id="DIV浮动IE文本产生3象素的bug"><a href="#DIV浮动IE文本产生3象素的bug" class="headerlink" title="DIV浮动IE文本产生3象素的bug"></a>DIV浮动IE文本产生3象素的bug</h3><p>左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#box&#123; float:left; width:800px;&#125; </div><div class="line">#left&#123; float:left; width:50%;&#125; </div><div class="line">#right&#123; width:50%;&#125; </div><div class="line">*html #left&#123; margin-right:-3px; //这句是关键&#125; </div><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">&lt;div id=&quot;left&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;right&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="IE捉迷藏的问题"><a href="#IE捉迷藏的问题" class="headerlink" title="IE捉迷藏的问题"></a>IE捉迷藏的问题</h3><p>当div应用复杂的时候每个栏中又有一些链接，DIV等这个时候容易发生捉迷藏的问题。<br>有些内容显示不出来，当鼠标选择这个区域是发现内容确实在页面。</p>
-<p><strong><em> 解决办法：对#layout使用line-height属性或者给#layout使用固定高和宽。页面结构尽量简单。 </em></strong></p>
-<h3 id="float的div闭合-清除浮动-自适应高度"><a href="#float的div闭合-清除浮动-自适应高度" class="headerlink" title="float的div闭合;清除浮动;自适应高度"></a>float的div闭合;清除浮动;自适应高度</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;floatA&quot;&gt;&lt;div id=&quot;floatB&quot;&gt;&lt;div id=&quot;NOTfloatC&quot;&gt;</div></pre></td></tr></table></figure>
+            <blockquote>
+<p>在nodeJS强大的威力下，javascript能做的事越来越多，在之前的项目中有用到es6、es7的语法，由于有babel的支持，所以兼容性的问题不存在了。<br>之前一直用babel的plugin来转换语法，比如箭头函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let a=_=&gt; _+1</div></pre></td></tr></table></figure>
+<p>象这种语法结构 ，如果不解析的话，稍微老一点的浏览器会不识别此类方法，然后抛出一个错误.</p>
+<p>babel转换器依靠nodeJS作用运行环境，把上述代码在底层转换成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a=function( _ )&#123;</div><div class="line">	</div><div class="line">	return _ + 1</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样就是老式的一个普通 函数，浏览器运行起来豪无压力。</p>
+<p><strong><em> 那babel到底是怎样做的了？ </em></strong></p>
+<p><a href="https://github.com/thejameskyle/babel-handbook/blob/master/translations/zh-Hans/plugin-handbook.md" target="_blank" rel="external">关于babel的plugin详情，请点击 plugin-handbook </a></p>
+<p>我这里只描述我自已对babel 自定义plugin的理解：</p>
+<p><strong> 目标 </strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function square(n) &#123;</div><div class="line"> return n * n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面是一个javascript中的普通函数声明，执行此函数，传入参数据n,返回的是n的平方.出于研究的目的，现在希望返回的是 <strong><em> z X z </em></strong></p>
+<p>在不知道babel转换的原理之前，我们设想这样的操作应该是这样几种情况   <strong>(至少我只能想到这几种情况):</strong> </p>
 <ul>
-<li><p>这里的NOTfloatC并不希望继续平移，而是希望往下排。(其中floatA、floatB的属性已经设置为float:left;)<br>这段代码在IE中毫无问题，问题出在FF。原因是NOTfloatC并非float标签，必须将float标签闭合。在<div class="floatB"><div class="NOTfloatC">之间加上<div class="clear">这个div一定要注意位置，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。并且将clear这种样式定义为为如下即可：.clear{clear:both;}</div></div></div></p>
+<li><p>用字符串方式把<code>n</code>替换成<code>z</code></p>
 </li>
-<li><p>作为外部 wrapper 的 div 不要定死高度,为了让高度能自适应，要在wrapper里面加上overflow:hidden; 当包含float的box的时候，高度自适应在IE下无效，这时候应该触发IE的layout私有属性(万恶的IE啊！)用zoom:1;可以做到，这样就达到了兼容。<br>例如某一个wrapper如下定义：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.colwrapper&#123;overflow:hidden; zoom:1; margin:5px auto;&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>对于排版,我们用得最多的css描述可能就是float:left.有的时候我们需要在n栏的float div后面做一个统一的背景,譬如: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;page&quot;&gt;</div><div class="line">&lt;div id=&quot;left&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;center&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;right&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<li><p>用正则方式把 <code>n</code>替换成<code>z</code></p>
 </li>
 </ul>
-<p>比如我们要将page的背景设置成蓝色,以达到所有三栏的背景颜色是蓝色的目的,但是我们会发现随着left center right的向下拉长,而page居然保存高度不变,问题来了,原因在于page不是float属性,而我们的page由于要居中,不能设置成float,所以我们应该这样解决：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;page&quot;&gt;</div><div class="line">	&lt;div id=&quot;bg&quot; style=&quot;float:left;width:100%&quot;&gt;</div><div class="line">		&lt;div id=&quot;left&quot;&gt;&lt;/div&gt;</div><div class="line">		&lt;div id=&quot;center&quot;&gt;&lt;/div&gt;</div><div class="line">		&lt;div id=&quot;right&quot;&gt;&lt;/div&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>再嵌入一个float left而宽度是100%的DIV解决之。</p>
-<ul>
-<li>万能float 闭合(非常重要!)<br>关于 clear float 的原理可参见 [How To Clear Floats Without Structural Markup],将以下代码加入Global CSS 中,给需要闭合的div加上class=”clearfix” 即可,屡试不爽。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/* Clear Fix */ </div><div class="line">.clearfix:after &#123; content:&quot;.&quot;; display:block; height:0; clear:both; visibility:hidden; &#125; </div><div class="line">.clearfix &#123; display:inline-block; &#125; </div><div class="line">/* Hide from IE Mac */ </div><div class="line">.clearfix &#123;display:block;&#125; </div><div class="line">/* End hide from IE Mac */ </div><div class="line">/* end of clearfix */</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>或者这样设置：.hackbox{ display:table; //将对象作为块元素级的表格显示}</p>
-<h3 id="高度不适应"><a href="#高度不适应" class="headerlink" title="高度不适应"></a>高度不适应</h3><p>高度不适应是当内层对象的高度发生变化时外层高度不能自动进行调节，特别是当内层对象使用margin 或padding时。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#box &#123;background-color:#eee; &#125; </div><div class="line">#box p &#123;margin-top: 20px;margin-bottom: 20px; text-align:center; &#125; </div><div class="line">&lt;div id=&quot;box&quot;&gt;</div><div class="line">&lt;p&gt;p对象中的内容&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p><strong><em> 解决技巧：在P对象上下各加2个空的div对象CSS代码{height:0px;overflow:hidden;}或者为DIV加上border属性。 </em></strong></p>
-<h3 id="IE6下图片下有空隙产生"><a href="#IE6下图片下有空隙产生" class="headerlink" title="IE6下图片下有空隙产生"></a>IE6下图片下有空隙产生</h3><p><strong><em> 解决这个BUG的技巧有很多,可以是改变html的排版,或者设置img为display:block或者设置vertical-align属性为vertical-align:top/bottom/middle/text-bottom 都可以解决. </em></strong></p>
-<h3 id="对齐文本与文本输入框"><a href="#对齐文本与文本输入框" class="headerlink" title="对齐文本与文本输入框"></a>对齐文本与文本输入框</h3><p>加上vertical-align:middle;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">&lt;!--</div><div class="line">input &#123; </div><div class="line">width:200px; </div><div class="line">height:30px; </div><div class="line">border:1px solid red; </div><div class="line">vertical-align:middle; </div><div class="line">&#125; </div><div class="line">--&gt;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
-<p>经验证，在IE下任一版本都不适用，而ff、opera、safari、chrome均OK！</p>
-<h3 id="LI中内容超过长度后以省略号显示"><a href="#LI中内容超过长度后以省略号显示" class="headerlink" title="LI中内容超过长度后以省略号显示"></a>LI中内容超过长度后以省略号显示</h3><p>此技巧适用与IE、Opera、safari、chrom浏览器，FF暂不支持。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">&lt;!--</div><div class="line">li &#123; </div><div class="line">width:200px; </div><div class="line">white-space:nowrap; </div><div class="line">text-overflow:ellipsis; </div><div class="line">-o-text-overflow:ellipsis; </div><div class="line">overflow: hidden; </div><div class="line">&#125;</div><div class="line"></div><div class="line">--&gt;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="为什么web标准中IE无法设置滚动条颜色了"><a href="#为什么web标准中IE无法设置滚动条颜色了" class="headerlink" title="为什么web标准中IE无法设置滚动条颜色了"></a>为什么web标准中IE无法设置滚动条颜色了</h3><p>解决办法是将body换成html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;</div><div class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=gb2312&quot; /&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">&lt;!-- </div><div class="line">html &#123; </div><div class="line">scrollbar-face-color:#f6f6f6; </div><div class="line">scrollbar-highlight-color:#fff; </div><div class="line">scrollbar-shadow-color:#eeeeee; </div><div class="line">scrollbar-3dlight-color:#eeeeee; </div><div class="line">scrollbar-arrow-color:#000; </div><div class="line">scrollbar-track-color:#fff; </div><div class="line">scrollbar-darkshadow-color:#fff; </div><div class="line">&#125; </div><div class="line">--&gt;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="为什么无法定义1px左右高度的容器"><a href="#为什么无法定义1px左右高度的容器" class="headerlink" title="为什么无法定义1px左右高度的容器"></a>为什么无法定义1px左右高度的容器</h3><p>IE6下这个问题是因为默认的行高造成的,解决的技巧也有很多：例如:overflow:hidden　 zoom:0.08 　 line-height:1px</p>
-<h3 id="怎么样才能让层显示在FLASH之上呢"><a href="#怎么样才能让层显示在FLASH之上呢" class="headerlink" title="怎么样才能让层显示在FLASH之上呢"></a>怎么样才能让层显示在FLASH之上呢</h3><p>解决的办法是给FLASH设置透明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;param name=&quot;wmode&quot; value=&quot;transparent&quot; /&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="链接-a标签-的边框与背景"><a href="#链接-a标签-的边框与背景" class="headerlink" title="链接(a标签)的边框与背景"></a>链接(a标签)的边框与背景</h3><p>a链接加边框和背景色，需设置 display: block, 同时设置 float: left 保证不换行。参照menubar, 给 a 和menubar设置高度是为了避免底边显示错位, 若不设 height, 可以在menubar中插入一个空格。</p>
-<h3 id="超链接访问过后hover样式就不出现的问题"><a href="#超链接访问过后hover样式就不出现的问题" class="headerlink" title="超链接访问过后hover样式就不出现的问题"></a>超链接访问过后hover样式就不出现的问题</h3><p>被点击访问过的超链接样式不在具有hover和active了,很多人应该都遇到过这个问题,解决技巧是改变CSS属性的排列顺序: L-V-H-A </p>
-<style type="text/css">
-<!--
-a:link {} 
-a:visited {} 
-a:hover {} 
-a:active {} 
--->
-</style>
-
-<h3 id="FORM标签"><a href="#FORM标签" class="headerlink" title="FORM标签"></a>FORM标签</h3><p>这个标签在IE中,将会自动margin一些边距,而在FF中margin则是0,因此,如果想显示一致,所以最好在css中指定margin和 padding,针对上面两个问题,我的css中一般首先都使用这样的样式ul,form{margin:0;padding:0;}。</p>
-<h3 id="属性选择器-这个不能算是兼容-是隐藏css的一个bug"><a href="#属性选择器-这个不能算是兼容-是隐藏css的一个bug" class="headerlink" title="属性选择器(这个不能算是兼容,是隐藏css的一个bug)"></a>属性选择器(这个不能算是兼容,是隐藏css的一个bug)</h3><p>p[id]{}div[id]{}<br>这个对于IE6.0和IE6.0以下的版本都隐藏,FF和OPera作用.属性选择器和子选择器还是有区别的,子选择器的范围从形式来说缩小了,属性选择器的范围比较大,如p[id]中,所有p标签中有id的都是同样式的.</p>
-<h3 id="为什么FF下文本无法撑开容器的高度"><a href="#为什么FF下文本无法撑开容器的高度" class="headerlink" title="为什么FF下文本无法撑开容器的高度"></a>为什么FF下文本无法撑开容器的高度</h3><p>标准浏览器中固定高度值的容器是不会象IE6里那样被撑开的,那我又想固定高度,又想能被撑开需要怎样设置呢？办法就是去掉height设置min-height:200px; 这里为了照顾不认识min-height的IE6 可以这样定义:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">height:auto!important; </div><div class="line">height:200px; </div><div class="line">min-height:200px; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p> IE和FireFox 对空格的尺寸解释不同，FireFox为4px,IE为8px; FireFox对div与div之间的空格是忽略的，但是IE是处理的。因此在两个相邻div之间不要有空格跟回车，否则可能造成不同浏览间之间格式不正确，比如著名的3px偏差（多个img标签连着，然后定义float: left;结果在firefox里面正常，而IE里面显示的每个img都相隔了3px。我把标签之间的空格都删除都没有作用。解决方法是在img外面套li，并且对li定义margin: 0; 避免方式：在必要的时候不要无视 list 标签）而且原因难以查明。</p>
-<h3 id="条件注释"><a href="#条件注释" class="headerlink" title="条件注释"></a>条件注释</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css.css&quot; /&gt;</div><div class="line">&lt;!--[if IE 7]&gt;</div><div class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie7.css&quot; /&gt;</div><div class="line">&lt;![endif]--&gt;</div><div class="line">&lt;!--[if lte IE 6]&gt;</div><div class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;ie.css&quot; /&gt;</div><div class="line">&lt;![endif]--&gt;</div><div class="line">lte -- 小于等于</div><div class="line">lt  -- 小于</div><div class="line">gte --  大于等于</div><div class="line">gt  --  大于</div><div class="line">！ --  不等于</div></pre></td></tr></table></figure>
-<h3 id="强制渲染"><a href="#强制渲染" class="headerlink" title="强制渲染"></a>强制渲染</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=X-UA-Compatible content=IE=EmulateIE7&gt;    //这句话的意思是强制使用IE7模式来解析网页代码！</div><div class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=8&quot;&gt;</div><div class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;chrome=1&quot; /&gt;    //Google Chrome Frame也可以让IE用上Chrome的引擎</div><div class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=EmulateIE7&quot;&gt;</div><div class="line">&lt;!– IE7 mode –&gt; 或者 &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=7&quot;&gt;&lt;!– IE7 mode –&gt;       //强制IE8使用IE7模式来解析</div><div class="line"></div><div class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=6&quot;&gt;</div><div class="line">&lt;!– IE6 mode –&gt;   &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=5&quot;&gt;&lt;!– IE5 mode –&gt;   //强制IE8使用IE6或IE5模式来解析</div><div class="line">&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=5; IE=8&quot; /&gt;   //一个特定版本的IE支持所要求的兼容性模式多于一种</div></pre></td></tr></table></figure>
-<h3 id="js兼容文件"><a href="#js兼容文件" class="headerlink" title="js兼容文件"></a>js兼容文件</h3><p>使IE5,IE6兼容到IE7模式（推荐）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!–[if lt IE 7]&gt;</div><div class="line">&lt;script src=&quot;http://ie7-js.googlecode.com/svn/version/2.0(beta)/IE7.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]–&gt;</div><div class="line">使IE5,IE6,IE7兼容到IE8模式</div><div class="line"></div><div class="line">&lt;!–[if lt IE 8]&gt;</div><div class="line">&lt;script src=&quot;http://ie7-js.googlecode.com/svn/version/2.0(beta)/IE8.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]–&gt;</div><div class="line">使IE5,IE6,IE7,IE8兼容到IE9模式</div><div class="line"></div><div class="line">&lt;!–[if lt IE 9]&gt;</div><div class="line">&lt;script src=&quot;http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]–&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="浏览器识别符"><a href="#浏览器识别符" class="headerlink" title="浏览器识别符"></a>浏览器识别符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">p&#123; _color:red; &#125;           IE6 专用</div><div class="line">*html p&#123; color:#red; &#125;  IE6 专用</div><div class="line">p&#123; +color:red; &#125;           IE6,7 专用</div><div class="line">p&#123; *color:red; &#125;           IE6,7 专用</div><div class="line">*html p&#123; color:red; &#125;    IE6,7 专用</div><div class="line">p&#123;*+color: red;&#125;          IE7 专用</div><div class="line">Body&gt; p&#123; color: red; &#125;  屏蔽 IE6</div><div class="line">p&#123; color:red\9; &#125;          IE8   </div><div class="line"></div><div class="line">Firefox: -moz-</div><div class="line">Safari: -webkit-</div><div class="line">Opera: -o-</div><div class="line">IE: -ms-</div></pre></td></tr></table></figure>
+<h6 id="但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗-那就请出babel转换的工具吧"><a href="#但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗-那就请出babel转换的工具吧" class="headerlink" title=" 但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗 那就请出babel转换的工具吧 "></a><strong><strong> 但是这样的转换复杂，而且不易于后期的维，字符串替换真的准确吗 那就请出babel转换的工具吧 </strong></strong></h6><h3 id="babylon"><a href="#babylon" class="headerlink" title="babylon"></a><a href="https://www.npmjs.com/package/babylon" title="Babylon 是 Babel 的解析器" target="_blank" rel="external">babylon</a></h3><p>Babylon 是 Babel 的解析器,它主要是把 javascript代码转换成一个ast语法树,上面的一个函数经过传换后，就变成了一个tree,<a href="http://astexplorer.net/#/Z1exs6BWMq" target="_blank" rel="external">详情查看</a></p>
+<h3 id="babel-traverse"><a href="#babel-traverse" class="headerlink" title="babel-traverse"></a><a href="https://www.npmjs.com/package/babel-traverse" title="Babel Traverse（遍历）模块维护了整棵树的状态，并且负责替换、移除和添加节点。" target="_blank" rel="external">babel-traverse</a></h3><p>Babel Traverse（遍历）模块维护了整棵树的状态，并且负责替换、移除和添加节点。</p>
+<h3 id="babel-types"><a href="#babel-types" class="headerlink" title="babel-types"></a><a href="https://www.npmjs.com/package/babel-types" target="_blank" rel="external">babel-types</a></h3><p>Babel Types模块是一个用于 AST 节点的 Lodash 式工具库（译注：Lodash 是一个 JavaScript 函数工具库，<br>提供了基于函数式编程风格的众多工具函数）， 它包含了构造、验证以及变换 AST 节点的方法</p>
+<h3 id="babel-generator"><a href="#babel-generator" class="headerlink" title="babel-generator"></a><a href="https://www.npmjs.com/package/babel-generator" target="_blank" rel="external">babel-generator</a></h3><p>Babel Generator模块是 Babel 的代码生成器，它读取AST并将其转换为代码和源码映射（sourcemaps）。</p>
+<p>通上面一些工具和官方提供的文档，做了一次简单的转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">import * as babylon from &quot;babylon&quot;;</div><div class="line">import * as t from &apos;babel-types&apos;;</div><div class="line">import traverse from &quot;babel-traverse&quot;;</div><div class="line">import generate from &apos;babel-generator&apos;</div><div class="line">import template from &quot;babel-template&quot;;</div><div class="line">const code = `function square(n) &#123;</div><div class="line">  return n * n;</div><div class="line">&#125;`;</div><div class="line">const ast = babylon.parse(code);</div><div class="line">traverse(ast, &#123;</div><div class="line">  enter(path) &#123;</div><div class="line">    if (t.isIdentifier(path.node, &#123; name: &quot;n&quot; &#125;)) &#123;</div><div class="line">        path.node.name = &quot;x&quot;;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">var r_code = generate( ast ) </div><div class="line"></div><div class="line">console.log(r_code) //后就是转换成的代码了.</div></pre></td></tr></table></figure>
           
         
       
@@ -731,7 +412,7 @@ a:active {}
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -777,8 +458,8 @@ a:active {}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -790,8 +471,8 @@ a:active {}
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           

@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="路漫漫其修远兮 吾将上下而求索" />
 
 
 
@@ -94,18 +94,16 @@
 
 
 
-<meta name="description" content="为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。   嗯？这都是怎么一回事哪？最近我有机会研究使用不同的方法在 JavaScript 中实现 装饰者模式（又称为包装模式）。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。 “当然不是这种装饰者…” 这5种不同的实现方式分别是：  闭包 猴子补丁 原型继承 代理">
-<meta name="keywords" content="javascript">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS 5种不同的方法实现装饰者模式（译）">
-<meta property="og:url" content="http://yoursite.com/2017/08/14/JS-5种不同的方法实现装饰者模式（译）/index.html">
+<meta name="description" content="路漫漫其修远兮 吾将上下而求索">
+<meta property="og:type" content="website">
+<meta property="og:title" content="life like a box of chocolate">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
 <meta property="og:site_name" content="life like a box of chocolate">
-<meta property="og:description" content="为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。   嗯？这都是怎么一回事哪？最近我有机会研究使用不同的方法在 JavaScript 中实现 装饰者模式（又称为包装模式）。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。 “当然不是这种装饰者…” 这5种不同的实现方式分别是：  闭包 猴子补丁 原型继承 代理">
+<meta property="og:description" content="路漫漫其修远兮 吾将上下而求索">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-08-14T09:08:25.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS 5种不同的方法实现装饰者模式（译）">
-<meta name="twitter:description" content="为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。   嗯？这都是怎么一回事哪？最近我有机会研究使用不同的方法在 JavaScript 中实现 装饰者模式（又称为包装模式）。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。 “当然不是这种装饰者…” 这5种不同的实现方式分别是：  闭包 猴子补丁 原型继承 代理">
+<meta name="twitter:title" content="life like a box of chocolate">
+<meta name="twitter:description" content="路漫漫其修远兮 吾将上下而求索">
 
 
 
@@ -134,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/14/JS-5种不同的方法实现装饰者模式（译）/"/>
+  <link rel="canonical" href="http://yoursite.com/page/4/"/>
 
 
 
 
 
-  <title>JS 5种不同的方法实现装饰者模式（译） | life like a box of chocolate</title>
+  <title>life like a box of chocolate</title>
   
 
 
@@ -159,7 +157,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -262,9 +262,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -294,7 +294,9 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">JS 5种不同的方法实现装饰者模式（译）</h2>
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/14/JS-5种不同的方法实现装饰者模式（译）/" itemprop="url">JS 5种不同的方法实现装饰者模式（译）</a></h2>
         
 
         <div class="post-meta">
@@ -344,7 +346,9 @@
       
 
       
-        <blockquote>
+        
+          
+            <blockquote>
 <p>为了自身乐趣和加强理解使用闭包、猴子补丁、原型、代理和中间件5种不同方式在 javascript 中实现装饰者模式。 </p>
 </blockquote>
 <h3 id="嗯？这都是怎么一回事哪？"><a href="#嗯？这都是怎么一回事哪？" class="headerlink" title="嗯？这都是怎么一回事哪？"></a>嗯？这都是怎么一回事哪？</h3><p>最近我有机会研究使用不同的方法在 JavaScript 中实现 <a href="https://en.wikipedia.org/wiki/Decorator_pattern" target="_blank" rel="external">装饰者模式（又称为包装模式）</a>。我觉得有必要分享我所学到的，关于使用这些技术来实现装饰者模式的利弊。<br><strong> “当然不是这种装饰者…” </strong><br>这5种不同的实现方式分别是：</p>
@@ -502,6 +506,8 @@
 <p>不支持差的代码</p>
 <p>相对简单的装饰方法</p>
 
+          
+        
       
     </div>
     
@@ -516,40 +522,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/08/14/javascript-css-中的小技巧/" rel="next" title="javascript / css 中的小技巧">
-                <i class="fa fa-chevron-left"></i> javascript / css 中的小技巧
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/14/Object-defineProperty注意事项/" rel="prev" title="Object.defineProperty注意事项">
-                Object.defineProperty注意事项 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -559,11 +539,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -571,10 +554,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -595,17 +574,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/psu.jpg"
@@ -658,22 +628,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#嗯？这都是怎么一回事哪？"><span class="nav-number">1.</span> <span class="nav-text">嗯？这都是怎么一回事哪？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首先，需要被装饰的组件"><span class="nav-number"></span> <span class="nav-text">首先，需要被装饰的组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何装饰这个组件"><span class="nav-number">1.</span> <span class="nav-text">如何装饰这个组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：-闭包"><span class="nav-number">2.</span> <span class="nav-text">方法一： 闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#该如何使用闭包？"><span class="nav-number">2.1.</span> <span class="nav-text">该如何使用闭包？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#官方：什么是闭包？"><span class="nav-number">2.2.</span> <span class="nav-text">官方：什么是闭包？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：猴子补丁"><span class="nav-number">3.</span> <span class="nav-text">方法二：猴子补丁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法三：原型继承"><span class="nav-number">4.</span> <span class="nav-text">方法三：原型继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法四：代理"><span class="nav-number">5.</span> <span class="nav-text">方法四：代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法五：中间件"><span class="nav-number">6.</span> <span class="nav-text">方法五：中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从中我们能总结哪些结论？"><span class="nav-number">8.</span> <span class="nav-text">从中我们能总结哪些结论？</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -791,10 +745,10 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-
+  
 
   
 
